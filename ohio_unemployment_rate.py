@@ -37,8 +37,18 @@ for row in reader:
 plt.style.use('dark_background')
 figure, graph = plt.subplots()
 
-
 graph.plot(dates, unemployment_rates, color='white')
-
+graph.set_title('Unemployment Rates for Ohio (by Month): 1976-2022', fontsize=20)
+graph.set_ylabel('Unemployment Rate (%)', fontsize=16)
+graph.set_xlabel('Dates', fontsize=16)
+graph.tick_params(axis='y', labelsize=12)
+graph.xaxis.set_major_locator(mdates.YearLocator(2))  # tick every 2 years
+graph.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+graph.yaxis.set_major_locator(mtick.MultipleLocator(1))
+start_date = datetime(1975, 1, 1)
+end_date = datetime(2023, 1, 1)
+graph.set_xlim(start_date, end_date)
+graph.grid(which='major', axis='y', color='white', linestyle='--', linewidth=0.4,alpha=0.3)
+figure.autofmt_xdate()
 
 plt.show()
